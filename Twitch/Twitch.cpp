@@ -3,6 +3,8 @@
 #include "Engine/IO/Mouse.h"
 #include "Engine/IO/Keyboard.h"
 
+#include "FlappyTwitch/Flapper.h"
+
 #include <iostream>
 using namespace std;
 
@@ -13,51 +15,53 @@ int main()
 	Engine engine;
 	engine.Initialize("Twitch!");
 
-	Sprite testSprite = Sprite("Assets/Art/Biplane.png", 0, 0);
+	Sprite testSprite = Sprite("Assets/Art/Biplane.png", Vector3(100, 100, 0));
 	testSprite.SetScale(0.25f);
+
+	Flapper player(testSprite);
 
 	while (true)
 	{
 		engine.Update();
-		testSprite.Update();
+		player.Update();
 
 		//testSprite.SetPos((float)Mouse::GetMouseX(), (float)Mouse::GetMouseY());
 
 		if (Mouse::ButtonDown(GLFW_MOUSE_BUTTON_LEFT))
 		{
-			testSprite.RotateBy(100);
+			player.GetSprite().RotateBy(100);
 		}
 		if (Mouse::ButtonUp(GLFW_MOUSE_BUTTON_RIGHT))
 		{
-			testSprite.RotateBy(-100);
+			player.GetSprite().RotateBy(-100);
 		}
 		if (Mouse::Button(GLFW_MOUSE_BUTTON_MIDDLE))
 		{
-			testSprite.RotateBy(100);
+			player.GetSprite().RotateBy(100);
 		}
 
 		if (Keyboard::Key(GLFW_KEY_W))
 		{
-			testSprite.MoveUp();
+			player.GetRB().AddForce(Vector3(0, 20, 0));
 		}
 
 		if (Keyboard::Key(GLFW_KEY_S))
 		{
-			testSprite.MoveDown();
+			player.GetRB().AddForce(Vector3(0, -20, 0));
 		}
 
 		if (Keyboard::Key(GLFW_KEY_A))
 		{
-			testSprite.MoveLeft();
+			player.GetRB().AddForce(Vector3(-200, 0, 0));
 		}
 
 		if (Keyboard::Key(GLFW_KEY_D))
 		{
-			testSprite.MoveRight();
+			player.GetRB().AddForce(Vector3(200, 0, 0));
 		}
 
 		engine.BeginRender();
-		testSprite.Render();
+		player.Render();
 		engine.EndRender();
 	}
 

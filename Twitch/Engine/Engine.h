@@ -12,7 +12,7 @@ class Engine
 public:
 	static int SCREEN_WIDTH;
 	static int SCREEN_HEIGHT;
-	static double GetDT();
+	static float GetDT();
 
 	Engine();
 	~Engine();
@@ -26,8 +26,8 @@ public:
 private:
 	static GLFWwindow* window;
 
-	static double dt;
-	double lastTime;
+	static float dt;
+	float lastTime;
 };
 
 #endif
