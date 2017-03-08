@@ -42,6 +42,9 @@
     <ClCompile Include="FlappyTwitch\Flapper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FlappyTwitch\InputManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Engine.h">
@@ -66,6 +69,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FlappyTwitch\Flapper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FlappyTwitch\InputManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

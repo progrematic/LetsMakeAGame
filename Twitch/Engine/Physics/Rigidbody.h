@@ -16,6 +16,9 @@ public:
 
 	void AddForce(Vector3 f);
 
+	Vector3 GetVel();
+	void SetVel(Vector3 _vel);
+
 private:
 	Vector3* pos;
 	float* rot;
