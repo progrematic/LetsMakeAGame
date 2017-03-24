@@ -11,4 +11,6 @@ void InputManager::Update()
 	{
 		flapper->Flap();
 	}
+
+	//flapper->GetSprite().MoveTo(Vector3(Mouse::GetMouseX(), Mouse::GetMouseY(), 0));
 }

@@ -4,6 +4,8 @@
 class Vector3
 {
 public:
+	static float Dot(const Vector3& a, const Vector3& b);
+	static Vector3 Project(const Vector3& a, const Vector3& b);
 
 	Vector3();
 	Vector3(const Vector3& other);

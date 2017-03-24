@@ -1,5 +1,19 @@
 #include "Vector3.h"
 
+#include <math.h>
+
+float Vector3::Dot(const Vector3& a, const Vector3& b)
+{
+	return a.x * b.x + a.y * b.y;
+}
+
+Vector3 Vector3::Project(const Vector3& a, const Vector3& b)
+{
+	return Vector3(	(Vector3::Dot(a, b) / ((float)pow(b.x, 2) + (float)pow(b.y, 2))) * b.x,
+					(Vector3::Dot(a, b) / ((float)pow(b.x, 2) + (float)pow(b.y, 2))) * b.y,
+					0);
+}
+
 Vector3::Vector3()
 {
 	x = 0;
