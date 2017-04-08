@@ -56,4 +56,13 @@ namespace Math
 
 		return retVal;
 	}
+
+	float Abs(float x)
+	{
+		if (x > 0)
+		{
+			return x;
+		}
+		return -x;
+	}
 }

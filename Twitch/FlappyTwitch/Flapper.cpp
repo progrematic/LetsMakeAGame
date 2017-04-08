@@ -15,7 +15,8 @@ Flapper::Flapper(Sprite _sprite) : Flapper()
 	sprite = _sprite;
 
 	Rect boundingRect = Rect();
-	boundingRect.SetSize(*sprite.GetSize() * *sprite.GetScale());
+	Vector3 sizeOffset(0.8, 0.6, 1);
+	boundingRect.SetSize(*sprite.GetSize() * *sprite.GetScale() * sizeOffset);
 	rb.Initialize(0.8f, -10, sprite.GetPos(), sprite.GetRot(), sprite.GetScale(), sprite.GetSize(), boundingRect);
 }
 

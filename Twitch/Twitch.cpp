@@ -5,6 +5,7 @@
 
 #include "FlappyTwitch/InputManager.h"
 #include "FlappyTwitch/Flapper.h"
+#include "FlappyTwitch/Pipe.h"
 
 #include <iostream>
 using namespace std;
@@ -17,28 +18,27 @@ int main()
 	engine.Initialize("Twitch!");
 
 	Sprite testSprite = Sprite("Assets/Art/Biplane.png", Vector3(Engine::SCREEN_WIDTH / 2, Engine::SCREEN_HEIGHT / 2, 0));
-	testSprite.SetScale(0.25f);
-
-	Sprite testSprite2 = Sprite("Assets/Art/Biplane.png", Vector3(Engine::SCREEN_WIDTH / 2, Engine::SCREEN_HEIGHT / 2, 0));
-	testSprite2.SetScale(0.25f);
+	testSprite.SetScale(0.15f);
 
 	Flapper player(testSprite);
-	Flapper player2(testSprite2);
 
-	InputManager im(&player);
+	Pipe::Initialize();
+	Pipe pipe(Vector3(0, 0, 0));
+
+	InputManager im(&player, &pipe);
 
 	while (true)
 	{
 		engine.Update();
 		player.Update();
-		player2.Update();
-		bool isColliding = Rigidbody::IsColliding(player.GetRB(), player2.GetRB());
+		pipe.Update();
+		bool isColliding = Rigidbody::IsColliding(player.GetRB(), pipe.GetTopRB()) || Rigidbody::IsColliding(player.GetRB(), pipe.GetBotRB());
 		cout << (isColliding ? "COLLIDING!!!!" : "....") << endl;
 		im.Update();
 
 		engine.BeginRender();
 		player.Render();
-		player2.Render();
+		pipe.Render();
 		engine.EndRender();
 	}
 

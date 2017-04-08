@@ -157,6 +157,7 @@
     <ClCompile Include="Engine\Physics\Rigidbody.cpp" />
     <ClCompile Include="FlappyTwitch\Flapper.cpp" />
     <ClCompile Include="FlappyTwitch\InputManager.cpp" />
+    <ClCompile Include="FlappyTwitch\Pipe.cpp" />
     <ClCompile Include="Twitch.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -171,6 +172,7 @@
     <ClInclude Include="Engine\Physics\Rigidbody.h" />
     <ClInclude Include="FlappyTwitch\Flapper.h" />
     <ClInclude Include="FlappyTwitch\InputManager.h" />
+    <ClInclude Include="FlappyTwitch\Pipe.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
