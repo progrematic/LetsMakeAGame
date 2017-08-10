@@ -6,13 +6,16 @@
 #include "FlappyTwitch/InputManager.h"
 #include "FlappyTwitch/Flapper.h"
 #include "FlappyTwitch/Pipe.h"
+#include "FlappyTwitch/PipeManager.h"
 
 #include <iostream>
+#include <time.h>
 using namespace std;
 
 int main()
 {
 	cout << "Hello, Twitch!" << endl;
+	srand(time(NULL));
 	
 	Engine engine;
 	engine.Initialize("Twitch!");
@@ -23,22 +26,22 @@ int main()
 	Flapper player(testSprite);
 
 	Pipe::Initialize();
-	Pipe pipe(Vector3(0, 0, 0));
+	PipeManager pipeManager;
 
-	InputManager im(&player, &pipe);
+	InputManager im(&player);
 
 	while (true)
 	{
 		engine.Update();
 		player.Update();
-		pipe.Update();
-		bool isColliding = Rigidbody::IsColliding(player.GetRB(), pipe.GetTopRB()) || Rigidbody::IsColliding(player.GetRB(), pipe.GetBotRB());
+		pipeManager.Update();
+		bool isColliding = pipeManager.CheckCollision(player);
 		cout << (isColliding ? "COLLIDING!!!!" : "....") << endl;
 		im.Update();
 
 		engine.BeginRender();
 		player.Render();
-		pipe.Render();
+		pipeManager.Render();
 		engine.EndRender();
 	}
 
