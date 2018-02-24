@@ -4,16 +4,20 @@
 #include "../Engine/Physics/Rigidbody.h"
 
 PipeManager::PipeManager() :
-	xSeparation(800),
-	ySeparation(500),
+	xStartSeparation(800),
+	yStartSeparation(500),
+	xSeparation(xStartSeparation),
+	ySeparation(yStartSeparation),
 	minXSeparation(200),
 	minYSeparation(300),
 	xSeparationSpeed(10),
 	ySeparationSpeed(10),
 	minSpawnY(284),
 	maxSpawnY(Engine::SCREEN_HEIGHT - 284),
-	totalPipes(0)
+	totalPipes(0),
+	points(0)
 {
+	Pipe::Initialize();
 	CreatePipe();
 }
 
@@ -43,6 +47,12 @@ void PipeManager::Update()
 				CreatePipe();
 			}
 		}
+
+		if (pipes[i]->GetX() < Engine::SCREEN_WIDTH / 2 &&
+			pipes[i]->GetPrevPos() > Engine::SCREEN_WIDTH / 2)
+		{
+			points++;
+		}
 	}
 
 	for (unsigned int i = 0; i < pipesToDelete.size(); i++)
@@ -50,6 +60,8 @@ void PipeManager::Update()
 		delete pipes[pipesToDelete[i]];
 		pipes.erase(pipes.begin() + pipesToDelete[i]);
 	}
+
+	cout << "Points: " << points << endl;
 }
 
 void PipeManager::Render()
@@ -73,6 +85,22 @@ bool PipeManager::CheckCollision(Flapper& flapper)
 	}
 
 	return isColliding;
+}
+
+void PipeManager::Reset()
+{
+	for (unsigned int i = 0; i < pipes.size(); i++)
+	{
+		delete pipes[i];
+	}
+	pipes.clear();
+
+	xSeparation = xStartSeparation;
+	ySeparation = yStartSeparation;
+	totalPipes = 0;
+	points = 0;
+
+	CreatePipe();
 }
 
 // Private

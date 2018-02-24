@@ -15,6 +15,7 @@ public:
 	Pipe(Vector3 _pos);
 
 	void SetGap(float _gap);
+	float GetPrevPos();
 
 	void Update();
 	void Render();
@@ -37,6 +38,7 @@ private:
 	Rigidbody botRB;
 
 	Vector3 pos;
+	float prevPos;
 
 	float gap;
 	float speed;

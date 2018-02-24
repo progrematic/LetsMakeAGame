@@ -34,6 +34,7 @@ Pipe::Pipe(Vector3 _pos) : Pipe()
 	}
 
 	pos = _pos + Vector3(GetWidth(), 0, 0);
+	prevPos = pos.x;
 
 	UpdatePos();
 	topSprite.FlipVertical();
@@ -58,8 +59,14 @@ void Pipe::SetGap(float _gap)
 	UpdatePos();
 }
 
+float Pipe::GetPrevPos()
+{
+	return prevPos;
+}
+
 void Pipe::Update()
 {
+	prevPos = topSprite.GetPos()->x;
 	topRB.Update();
 	botRB.Update();
 }

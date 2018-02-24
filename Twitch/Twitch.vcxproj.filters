@@ -42,9 +42,6 @@
     <ClCompile Include="FlappyTwitch\Flapper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FlappyTwitch\InputManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\Math\Rect.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -55,6 +52,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FlappyTwitch\PipeManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FlappyTwitch\GameManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -83,9 +83,6 @@
     <ClInclude Include="FlappyTwitch\Flapper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FlappyTwitch\InputManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\Math\Rect.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -96,6 +93,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FlappyTwitch\PipeManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FlappyTwitch\GameManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

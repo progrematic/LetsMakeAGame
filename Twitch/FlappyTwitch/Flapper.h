@@ -19,6 +19,11 @@ public:
 	Sprite& GetSprite();
 	Rigidbody& GetRB();
 
+	void Reset();
+
+private:
+	void HandleInput();
+
 private:
 	Sprite sprite;
 	Rigidbody rb;

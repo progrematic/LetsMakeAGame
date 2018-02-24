@@ -2,6 +2,8 @@
 
 #include "../Engine/Engine.h"
 #include "../Engine/Math/Rect.h"
+#include "../Engine/IO/Keyboard.h"
+#include "../Engine/IO/Mouse.h"
 
 Flapper::Flapper()
 {
@@ -15,13 +17,15 @@ Flapper::Flapper(Sprite _sprite) : Flapper()
 	sprite = _sprite;
 
 	Rect boundingRect = Rect();
-	Vector3 sizeOffset(0.8, 0.6, 1);
+	Vector3 sizeOffset(0.8, 0.3, 1);
 	boundingRect.SetSize(*sprite.GetSize() * *sprite.GetScale() * sizeOffset);
 	rb.Initialize(0.8f, -10, sprite.GetPos(), sprite.GetRot(), sprite.GetScale(), sprite.GetSize(), boundingRect);
 }
 
 void Flapper::Update()
 {
+	HandleInput();
+
 	sprite.Update();
 	rb.Update();
 
@@ -55,4 +59,21 @@ Sprite& Flapper::GetSprite()
 Rigidbody& Flapper::GetRB()
 {
 	return rb;
+}
+
+void Flapper::Reset()
+{
+	sprite.MoveTo(Vector3(Engine::SCREEN_WIDTH / 2, Engine::SCREEN_HEIGHT / 2, 0));
+	sprite.RotateTo(0);
+	rb.SetVel(Vector3(0, 0, 0));
+}
+
+// Private
+
+void Flapper::HandleInput()
+{
+	if (Keyboard::KeyDown(GLFW_KEY_SPACE) || Mouse::ButtonDown(GLFW_MOUSE_BUTTON_LEFT))
+	{
+		Flap();
+	}
 }
